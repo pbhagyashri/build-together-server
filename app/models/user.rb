@@ -7,7 +7,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
   validates :username, presence: true
-
+  
   has_many :comments
   has_many :projects, through: :comments
+  
 end
