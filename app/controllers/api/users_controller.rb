@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
+    binding.pry
     @users = User.all.sort { |a,b| b.no_of_checkins <=> a.no_of_checkins }
     render json: @users
   end
