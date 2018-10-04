@@ -2,6 +2,13 @@ class Api::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :project_comments]
 
   def index
+    projects = Project.all
+    
+    if projects
+      render json: projects, status: 200
+    else
+      render json: {message: "no projects found"}, status: 400
+    end
   end
 
   def create 
