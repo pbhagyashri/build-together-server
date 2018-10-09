@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
       render json: {user: { id: user.id, username: user.username, email: user.email, token: token}}, status: 200
       
     else
-      render json: {message: user.errors}, status: 400
+      render json: {errors: "Email already exists"}, status: 400
     end
   end
 
