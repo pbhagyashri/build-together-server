@@ -9,6 +9,7 @@ class Api::ProjectsController < ApplicationController
     else
       render json: {message: "no projects found"}, status: 400
     end
+    
   end
 
   def create 
