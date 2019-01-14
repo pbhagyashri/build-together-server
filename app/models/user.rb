@@ -8,7 +8,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :username, presence: true
   
+  has_many :projects
   has_many :comments
-  has_many :projects, through: :comments
+  has_many :commented_projects, through: :comments, source: :project
   
 end

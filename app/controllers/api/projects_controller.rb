@@ -18,11 +18,14 @@ class Api::ProjectsController < ApplicationController
   
     token = request.headers["HTTP_AUTHORIZATION"]
     
-    current_user = authenticate_user(token) 
+    current_user = authenticate_user(token)
+    
     if current_user
+    
       project = current_user.projects.build(project_params)
+      #project.author = current_user.username
       if project.save
-        render json: {name: project.name, technology: project.technology, description: project.description, duration: project.duration, num_of_likes: project.likes}, status: 200
+        render json: {project: project, user: project.user}, status: 200
       else
         render json: {message: project.errors}, status: 400
       end
@@ -54,7 +57,7 @@ class Api::ProjectsController < ApplicationController
     user_id = Auth.decode_token(token)["id"]
     current_user = User.find_by(id: user_id)
   end
-
+ 
   def project_params
     params.require(:project).permit(:name, :technologies, :description, :duration, :github_link, :comments => [])
   end
