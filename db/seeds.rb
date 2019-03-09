@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+reva = User.new(username: 'Reva', email: 'reva@test.com', password: '123456')
+reva.save
+
+reva_project = reva.projects.build(name: 'Better Meals', technologies: 'Ruby on Rails', duration: '1 month', description: 'ruby on rails project', github_link: 'some link')
+reva_project.save
+
+dada = User.new(username: 'Dada', email: 'dada@test.com', password: '123456')
+
+dada_project = dada.projects.build(name: 'Build Together', technologies: 'React', duration: '1 month', description: 'react project', github_link: 'some link')
+dada_project.save
+
+c = dada.comments.new(title: "dada's comment", description: "dada dada dada")

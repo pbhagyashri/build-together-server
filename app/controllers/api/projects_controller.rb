@@ -68,5 +68,3 @@ class Api::ProjectsController < ApplicationController
   end
 
 end
-
-#Check if this is working
