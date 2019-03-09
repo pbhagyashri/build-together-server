@@ -51,6 +51,7 @@ class Api::ProjectsController < ApplicationController
   def destroy
   end
 
+
   private 
 
   def authenticate_user(token)
@@ -67,3 +68,5 @@ class Api::ProjectsController < ApplicationController
   end
 
 end
+
+#Check if this is working
