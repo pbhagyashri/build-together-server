@@ -17,4 +17,4 @@ dada = User.new(username: 'Dada', email: 'dada@test.com', password: '123456')
 dada_project = dada.projects.build(name: 'Build Together', technologies: 'React', duration: '1 month', description: 'react project', github_link: 'some link')
 dada_project.save
 
-c = dada.comments.new(title: "dada's comment", description: "dada dada dada")
+c = Comment.new(title: "dada's comment", description: "dada dada dada")
