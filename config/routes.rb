@@ -3,8 +3,16 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :users, only: [:index, :show, :edit, :update, :destroy, :create]
+    resources :users do
+      resources :projects, only: [:index]
+    end
     resources :projects
     resources :comments
     resources :sessions, only: [:create, :destroy]
+
+    
   end
+
+
+  #get '/api/users/:id/projects', to: 'users#user_projects'
 end

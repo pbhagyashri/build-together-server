@@ -2,8 +2,8 @@ require 'auth'
 
 class Api::UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user?, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy, :user_projects]
+  before_action :authenticate_user?, only: [:show, :update, :destroy, :user_projects]
 
   def index
     @users = User.all
@@ -22,11 +22,12 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    if authenticate_user? && @user
-      render json: @user, status: 200
-    else
-      render json: {message: "User not found"}, status: 400
-    end
+    binding.pry
+    # if authenticate_user? && @user
+    #   render json: @user, status: 200
+    # else
+    #   render json: {message: "User not found"}, status: 400
+    # end
   end
 
   def update
@@ -47,6 +48,21 @@ class Api::UsersController < ApplicationController
       render status: 204
     else
       render json: {message: "Unable to process your request"}, status: 400
+    end
+  end
+
+  def user_projects
+    if authenticate_user?
+      binding.pry
+      user_projects = @user.projects 
+      if user_projects
+        render json: user_projects
+      else
+        render json: {message: "Sorry no projects found"}, status: 400
+      end
+    
+    else
+      render json: {message: "Sorry unable to process your request"}, status: 400
     end
   end
 

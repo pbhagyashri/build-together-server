@@ -5,12 +5,27 @@ class Api::ProjectsController < ApplicationController
   before_action :authenticate_user?, only: [:show, :update, :destroy]
 
   def index
-    projects = Project.all
+    if params["user_id"]
+      binding.pry
+      user = User.all.find_by(id: params["user_id"])
+      user_projects = user.projects
+
+      if user_projects
+        render json: user.projects, status: 200
+      else
+        render json: {message: "no projects found"}, status: 400
+      end
     
-    if projects
-      render json: projects, status: 200
     else
-      render json: {message: "no projects found"}, status: 400
+
+      projects = Project.all
+    
+      if projects
+        render json: projects, status: 200
+      else
+        render json: {message: "no projects found"}, status: 400
+      end
+
     end
     
   end
