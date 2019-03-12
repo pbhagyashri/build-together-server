@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     resources :users do
       resources :projects, only: [:index]
     end
-    resources :projects
+
+    resources :projects do 
+      resources :comments
+    end
+
     resources :comments
     resources :sessions, only: [:create, :destroy]
 

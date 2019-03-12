@@ -6,12 +6,12 @@ class Api::ProjectsController < ApplicationController
 
   def index
     if params["user_id"]
-      binding.pry
+    
       user = User.all.find_by(id: params["user_id"])
       user_projects = user.projects
 
       if user_projects
-        render json: user.projects, status: 200
+        render json: user_projects, status: 200
       else
         render json: {message: "no projects found"}, status: 400
       end
